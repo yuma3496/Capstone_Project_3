@@ -17,7 +17,6 @@ def write_txt_file_with_line_number(line_no, values):
         file.writelines(lines)
         file.close()
 
-
 def set_user_dict(user_file):
     users_dict = {}
     for user in user_file:
@@ -25,7 +24,6 @@ def set_user_dict(user_file):
         # if the line is not last then it has '\n' at the end so removing it and adding to dictionary
         users_dict[info[0]] = info[1].replace("\n", "")
     return users_dict
-
 
 def set_task_list(task_file):
     tasks_list = []
@@ -41,11 +39,8 @@ def set_task_list(task_file):
         temp.append(info[-1].replace("\n", ""))
         temp.append(count)
         tasks_list.append(temp)
-
         count += 1
-
     return tasks_list
-
 
 # it will check which user is logging in
 def authenticate(users_dict):
@@ -78,7 +73,6 @@ def append_new_line(file_name, text_to_append):
             file_object.write("\n")
         # Append text at the end of file
         file_object.write(text_to_append)
-
 
 # this helper method is using for editing lines in txt files
 def editing_text(mode, values, tasks_list, task, lookup, option):
@@ -124,7 +118,6 @@ def editing_text(mode, values, tasks_list, task, lookup, option):
             write_txt_file_with_line_number(lookup[option], text_to_write)
     return
 
-
 # this method is to update the lists whenever the menu is opened
 def update_data():
     # reading user.txt file
@@ -134,9 +127,7 @@ def update_data():
     # storing user info in dictionary
     users_data = set_user_dict(file_users)
     tasks_data = set_task_list(file_tasks)
-
     return users_data, tasks_data
-
 
 # below are functions which are required
 def reg_user(user_dict):
@@ -178,12 +169,10 @@ def add_task():
 
     return "***Task added successfully!***"
 
-
 def view_all(tasks_list):
     for task in tasks_list:
         print("Assigned to: ", task[0], ", Title: ", task[1], ", Description: ", task[2],
               ", Due date: ", task[3], ", Assigned Date: ", task[4], ", Completed: ", task[5])
-
 
 def view_mine(tasks_list, current_user):
     count = 1
@@ -250,9 +239,7 @@ def show_stats():
         print("user_overview.txt is not accessible/available")
     finally:
         user_overview.close()
-
     return
-
 
 def generate_reports(users_list, tasks_list):
     today = dt.strptime(date.today().strftime("%d-%m-%Y"), "%d-%m-%Y")
@@ -334,7 +321,6 @@ def generate_reports(users_list, tasks_list):
         user_overview.writelines(users_text_lines)
         user_overview.close()
     return
-
 
 if __name__ == "__main__":
     users, tasks = update_data()
